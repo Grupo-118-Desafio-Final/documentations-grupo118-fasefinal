@@ -36,7 +36,7 @@ Dividimos a aplicação em alguns serviços (entre APIs e Workers) para permitir
 
 Utilizamos mecanismos de Mensageria para garantir que não iremos perder elementos no fluxo de processamento, Incluindo a maneira como realizamos o aviso para o sistema de mensageria, informando sucesso apenas se tudo que é proposto no fluxo foi feito corretamente (ACK e NACK)
 
-1. API de Usuários e Planos
+## 1. API de Usuários e Planos
 
 Repositório: [final-challenge-grupo-118-users](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-users)
 Abordagem da API: <TODO - Colocar modelo escolhido>
@@ -50,7 +50,7 @@ O microsserviço de Usuários e Planos é responsavel por:
 
 Utilizamos SQL Server para realizar o armazenamento e o cadastro da nossa base de usuários
 
-2. API de Upload de Vídeos
+## 2. API de Upload de Vídeos
 
 Repositório: [final-challenge-grupo-118-upload-orchestrator](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-upload-orchestrator)
 Abordagem da API: <TODO - Colocar modelo escolhido>
@@ -64,7 +64,8 @@ Esse microsserviço é responsável por
 
 Utilizamos uma estrutura de MongoDB devido a simplicidade dos dados que precisam ser armazenados
 
-3. Worker de Corte de Imagens
+## 3. Worker de Corte de Imagens
+
 Repositório: [final-challenge-grupo-118-videos-consumer](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-videos-consumer)
 Abordagem da API: <TODO - Colocar modelo escolhido>
 
@@ -79,7 +80,7 @@ Esse consumidor é ativado a partir de uma mensagem via serviço de mensageria p
 
 Decidimos pelo worker também alterar o registro no MongoDB diretamente por fazer parte do mesmo "contexto" da API de vídeos e tratarem do mesmo assunto (gerenciamento de arquivos)
 
-4. Worker de Notificações
+## 4. Worker de Notificações
 
 Repositório: (final-challenge-grupo-118-notification)[https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-notification]
 Abordagem da API: <TODO - Colocar modelo escolhido>
