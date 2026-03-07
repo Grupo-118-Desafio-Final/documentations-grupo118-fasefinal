@@ -145,3 +145,98 @@ Criamos um Helm Chart padronização, que é armazenado no ACR criado na infraes
 - Repositório: [final-challenge-grupo-118-compose-to-develop](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-compose-to-develop)
 
 Para agilizar o processo de desenvolvimento, criamos esse repositório contendo os serviços cloud que iriamos entregar, de maneira local. Dessa maneira não precisariamos provisionar cedo a infraestrutura
+
+# Processo de Build e Deploy
+
+- Repositório: [final-challenge-grupo-118-template-pipeline](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-template-pipeline)
+
+Para facilitar o deploy e garantir um processo padronizado entre os membros do grupo, criamos templates de pipeline de CI e CD utilizando Github Actions
+
+- Templates de Build de aplicações dotnet e typescript
+- Template de deploy genérico
+- Criação e destruição de recursos Terraform)
+
+## Durante o pull request
+- Compilação do código: validação do build do projeto em um ambiente limpo
+- Execução dos testes automatizados: executa todos os projetos de teste contidos na solução
+- Análise de qualidade de código com SonarCloud: o template de pipeline cria automaticamente o projeto no SonarCloud caso ele não exista, utilizando as variáveis de ambiente configuradas no repositório
+  - Caso o quality gate não atinja o percentual de 80%, é inserido no PR um comentário automático informando a falha na qualidade do código e o mesmo fica bloqueado para merge.
+- Build da imagem Docker: Validação se o build em um contexto de container ocorre corretamente.
+
+## Na main
+Além de todos os passos acima, na main o pipeline realiza também:
+- Push da imagem Docker para o Container Registry: a imagem é enviada para o Azure Container Registry (ACR) para ser utilizada posteriormente no deploy.
+
+## Continous Deployment e Helm Charts
+Mantendo a mesma filosofia de padronização, criamos um helm chart que também é salvo no ACR para que todas as aplicações o utilizem. Esse Helm chart é responsável por:
+- Criar a estrutura classica para funcionamento em Kubernetes (deployments, services, secrets)
+- Criação do Ingress interno para comunicação via APIM
+- Criação de Secret de ACR para permitir pull de imagens privadas
+
+E para o deploy temos um pipeline padrão, também via Github Actions, que realiza as seguintes etapas:
+- Mapeamento de Github secrets para variáveis de ambiente do pipeline
+- Login no ACR
+- Pull do Helm Chart
+- Proceso de substituição de variáveis no Helm Chart
+- Deploy via Helm no cluster AKS
+
+Desse modo, a configuração das variaveis que cada aplicação utiliza ficou de maneira bem flexível
+
+No momento do deploy, precisamos apenas informar qual a versão do Helm chart e qual a versão da imagem gera
+
+<TODO - Imagem de workflow>
+
+Feito isso, o processo acontece de forma automática
+
+<TODO - Imagem de pipeline executando>
+
+Abaixo documentamos em um modelo de diagrama, todo nosso processo de CI e CD
+
+![Panorama Geral - CI e CD](CI-CD%20Structure/Panorama%20Geral%20-%20CI%20e%20CD.png)
+
+## Secrets
+
+Todos os pipelines reaproveitam alguns secrets configurados no Github Actions para garantir a segurança das credenciais utilizadas durante o processo de CI/CD.
+- Credenciais Azure
+- Credenciais ACR
+- Credenciais SonarCloud
+
+# Configurações
+Alguns passos, manuais até então, são necessários para o funcionamento correto do sistema:
+1. Conexão no Kubernetes via kubectl port-foward para buscar o Swagger 
+   - Como as APIs não são expostas publicamente, é preciso importar manualmente o Swagger para o APIM (efetuando o download do mesmo). Para isso, precisamos acessar as APIs via kubectl port-forward
+
+Exemplo para o módulo de vídeos:
+
+```bash
+kubectl port-forward svc/final-challenge-grupo-118-upload-orchestrator 8080:80 -n tech-challenge
+```
+
+2. Importação do Swagger no APIM
+   - Após baixar o Swagger via port-forward, é necessário importar o mesmo no APIM para que as APIs fiquem disponíveis para consumo
+   - No portal do APIM, selecionar "APIs" e clicar em "+ Add API"
+   - Selecionar "OpenAPI" e fazer o upload do arquivo Swagger baixado
+   - Após o upload, configurar o "Web service URL" para o endpoint correto (exemplo: http://10.10.0.10/uploads-api)
+     - é feito dessa maneira pois o Ingress configurado está pronto para substituir e enviar corretamente para as APIs, o path substituido.
+
+# Diagramas
+
+Abaixo elaboramos alguns diagramas C4 para ilustrar a arquitetura do sistema
+
+## Diagrama C4 - Contexto do Sistema
+
+Nessa visão mostramos em alto nível a ideia sobre o nosso sistema
+
+![Diagrama de Contexto - Desafio Final FIAP X](C4%20Diagrams/Diagrama%20de%20Contexto%20-%20Desafio%20Final%20FIAP%20X.png)
+
+## Diagrama C4 - Container
+
+Nessa visão, detalhamos um pouco como as APIs e os componentes de infraestrutura interagem entre si
+
+![Diagrama de Container - Desafio Final FIAP X](C4%20Diagrams/Diagrama%20de%20Container%20-%20Desafio%20Final%20FIAP%20X.png)
+
+## Diagrama de Sequência
+
+Nessa visão, mostramos como é o caminho para uso do sistema, passando pelas rotas, as áreas de contexto do sistema etc
+
+![Diagrama de Sequência - FIAP X](C4%20Diagrams/Diagrama%20de%20Sequência%20-%20FIAP%20X.png)
