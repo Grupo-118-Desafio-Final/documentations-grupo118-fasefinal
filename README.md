@@ -70,7 +70,7 @@ Abordagem da API: <TODO - Colocar modelo escolhido>
 
 <TODO - Code Coverage>
 
-Esse consumidor é ativado a partir de uma mensagem via serviço de mensageria para:"
+Esse consumidor é ativado a partir de uma mensagem via serviço de mensageria para:
 - Realizar o download do vídeo publicado no Blob Storage
 - Realizar os cortes das imagens com a qualidade de acordo com o plano
 - Geração do ZIP
@@ -78,3 +78,17 @@ Esse consumidor é ativado a partir de uma mensagem via serviço de mensageria p
 - Atualização do registro no MongoDB com a URL do ZIP gerado
 
 Decidimos pelo worker também alterar o registro no MongoDB diretamente por fazer parte do mesmo "contexto" da API de vídeos e tratarem do mesmo assunto (gerenciamento de arquivos)
+
+4. Worker de Notificações
+
+Repositório: (final-challenge-grupo-118-notification)[https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-notification]
+Abordagem da API: <TODO - Colocar modelo escolhido>
+
+<TODO - Code Coverage>
+
+Esse consumidor é ativado a partir de uma mensagem via serviço de mensageria para
+- Avisar caso de sucesso no corte das imagens
+- Avisar caso de erro no corte das imagens
+- Qualquer notificação geral necessária no sistema
+
+Esse serviço também consulta a API de planos e usuários para validar quais os meios possíveis para notificar o usuário (ex: email)
