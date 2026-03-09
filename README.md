@@ -41,7 +41,7 @@ Utilizamos mecanismos de Mensageria para garantir que não iremos perder element
 - Repositório: [final-challenge-grupo-118-users](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-users)
 - Abordagem da API: <TODO - Colocar modelo escolhido>
 
-<TODO - Code Coverage>
+![Code Coverage - API de Usuários e Planos](final-challenge-grupo-118-users%20-%20code%20coverage.PNG)
 
 O microsserviço de Usuários e Planos é responsavel por:
 - Gerenciar cadastro de Usuários
@@ -55,7 +55,7 @@ Utilizamos SQL Server para realizar o armazenamento e o cadastro da nossa base d
 - Repositório: [final-challenge-grupo-118-upload-orchestrator](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-upload-orchestrator)
 - Abordagem da API: <TODO - Colocar modelo escolhido>
 
-<TODO - Code Coverage>
+![Code Coverage - API de Upload de Vídeos](final-challenge-grupo-118-upload-orchestrator%20-%20code%20coverage.PNG)
 
 Esse microsserviço é responsável por
 - Executar o gerenciamento dos vídeos
