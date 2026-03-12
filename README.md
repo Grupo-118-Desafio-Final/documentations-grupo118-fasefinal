@@ -219,6 +219,33 @@ kubectl port-forward svc/final-challenge-grupo-118-upload-orchestrator 8080:80 -
    - Após o upload, configurar o "Web service URL" para o endpoint correto (exemplo: http://10.10.0.10/uploads-api)
      - é feito dessa maneira pois o Ingress configurado está pronto para substituir e enviar corretamente para as APIs, o path substituido.
 
+# Observabilidade
+
+Para enriquecer a experiência do monitoramento, criamos uma instância do Grafana Cloud e, através de um operador do [Grafana Alloy](https://grafana.com/docs/alloy/latest/), recebemos Traces, Logs e Metrics para envio para o cloud
+
+## Trace
+
+Abaixo, temos um exemplo de um trace capturado no nosso consumidor de notificações para busca de informações do usuário
+
+![Observability - Traces](./Observability/Observability%20-%20Traces.png)
+
+## Logs
+Também inserimos logs (principalmente no consumidor que gera os frames) para facilitar diagnósticos
+
+![Observability - Logs](./Observability/Observability%20-%20Logs.png)
+
+
+## Metrics
+
+EM um momento inicial, inserimos alguns dashboards pré-configurados para visualização dos recursos computacionais dentro do cluster kubernetes além de informações sobre as requisições efetuadas para as rotas das APIs
+
+### Observability - Metrics 1
+![Observability - Metrics 1](./Observability/Observability%20-%20Metrics%201.png)
+
+### Observability - Metrics 2
+![Observability - Métrics 2](./Observability/Observability%20-%20Metrics%202.png)
+
+
 # Diagramas
 
 Abaixo elaboramos alguns diagramas C4 para ilustrar a arquitetura do sistema
