@@ -124,6 +124,10 @@ Na parte de armazenamento, mantivemos o mesmo modelo dos trabalhos anteriores co
 - SQL Server
 - MongoDB
 
+OBS: A parte de gerenciamento das tabelas (DDL) utilizamos a estrutura de Code-First (onde a aplicação é responsável por criar a estrutura e aplicar as migrações), logo, não temos script de banco
+- no SQL, criamos as tabelas assim
+- no MongoDB, criamos o indice para facilitar o acesso das informações assim
+
 ## 3. Observabilidade
 
 - Repositórios: 
