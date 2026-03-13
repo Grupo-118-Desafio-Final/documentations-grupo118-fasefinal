@@ -39,7 +39,6 @@ Utilizamos mecanismos de Mensageria para garantir que não iremos perder element
 ## 1. API de Usuários e Planos
 
 - Repositório: [final-challenge-grupo-118-users](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-users)
-- Abordagem da API: <TODO - Colocar modelo escolhido>
 
 ![Code Coverage - API de Usuários e Planos](final-challenge-grupo-118-users%20-%20code%20coverage.PNG)
 
@@ -53,7 +52,6 @@ Utilizamos SQL Server para realizar o armazenamento e o cadastro da nossa base d
 ## 2. API de Upload de Vídeos
 
 - Repositório: [final-challenge-grupo-118-upload-orchestrator](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-upload-orchestrator)
-- Abordagem da API: <TODO - Colocar modelo escolhido>
 
 ![Code Coverage - API de Upload de Vídeos](final-challenge-grupo-118-upload-orchestrator%20-%20code%20coverage.PNG)
 
@@ -69,9 +67,8 @@ Para interagir com essa API, criamos um frontend no repositório [final-challeng
 ## 3. Worker de Corte de Imagens
 
 - Repositório: [final-challenge-grupo-118-videos-consumer](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-videos-consumer)
-- Abordagem da API: <TODO - Colocar modelo escolhido>
 
-<TODO - Code Coverage>
+![Code Coverage - Corte de Imagens](./final-challenge-grupo-118-videos-consumer%20-%20code%20coverage.png)
 
 Esse consumidor é ativado a partir de uma mensagem via serviço de mensageria para:
 - Realizar o download do vídeo publicado no Blob Storage
@@ -87,7 +84,7 @@ Decidimos pelo worker também alterar o registro no MongoDB diretamente por faze
 - Repositório: (final-challenge-grupo-118-notification)[https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-notification]
 - Abordagem da API: <TODO - Colocar modelo escolhido>
 
-<TODO - Code Coverage>
+![Code Coverage - Worker de Notificações](./final-challenge-grupo-118-notification%20-%20code%20coverage.png)
 
 Esse consumidor é ativado a partir de uma mensagem via serviço de mensageria para
 - Avisar caso de sucesso no corte das imagens
