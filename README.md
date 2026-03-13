@@ -128,7 +128,7 @@ OBS: A parte de gerenciamento das tabelas (DDL) utilizamos a estrutura de Code-F
   - [final-challenge-grupo-118-lgtm-keycloak](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-lgtm-keycloak)
   - [final-challenge-grupo-118-standard-dependencies](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-standard-dependencies)
 
-Para a observabilide, criamos um repositório que irá instalar o Grafana Alloy dentro do cluster e realizar o envio de Métricas, Traces e Logs para uma instância de Grafana Cloud
+Para a observabilidade, criamos um repositório que irá instalar o Grafana Alloy dentro do cluster e realizar o envio de Métricas, Traces e Logs para uma instância de Grafana Cloud
 
 E para manter o modelo padronizado criamos um Nuget Package, para facilitar a adoção e configuração dos serviços
 
@@ -297,3 +297,9 @@ Nessa visão, detalhamos um pouco como as APIs e os componentes de infraestrutur
 Nessa visão, mostramos como é o caminho para uso do sistema, passando pelas rotas, as áreas de contexto do sistema etc
 
 ![Diagrama de Sequência - FIAP X](C4%20Diagrams/Diagrama%20de%20Sequência%20-%20FIAP%20X.png)
+
+## Diagrama de Visão Geral
+
+No diagrama abaixo mostramos como os componentes interagem entre si no contexto de Cloud (limite de atuação da Azure e seus componentes e etc)
+
+![Kubernetes Architecture - Tech Challenge - FIAP X](./C4%20Diagrams/Kubernetes%20Architecture%20-%20Tech%20Challenge%20-%20FIAP%20X.png)
