@@ -25,12 +25,6 @@ Para assistir ao vídeo de apresentação do projeto, clique na imagem abaixo:
 
 [![Watch the video](11SOAT%20-%20Fase%20Final%20-%20Grupo%20118.PNG)]()
 
-
-# Collection do Postman
-Para facilitar o teste dos endpoints da API, foi criada uma que contém os endpoints utilizados no video.
-
-[![Run in Postman](https://run.pstmn.io/button.svg)](./Testes/postman_collection.json)
-
 # Módulos do Sistema
 Dividimos a aplicação em alguns serviços (entre APIs e Workers) para permitir uma maior escalabilidade da solução de acordo com a demanda
 
@@ -79,12 +73,13 @@ Esse consumidor é ativado a partir de uma mensagem via serviço de mensageria p
 - Publicação no Blob Storage
 - Atualização do registro no MongoDB com a URL do ZIP gerado
 
+Para realizar o corte de imagens, utilizamos o [FFMPEG](https://www.ffmpeg.org/) sendo instalado na nossa imagem Docker, para não dependermos de uma execução externa ao nosso ambiente Kubernetes. O uso dele inclusive, fez com que tivessemos que escalar essa aplicação para utilizar mais memória que as demais.
+
 Decidimos pelo worker também alterar o registro no MongoDB diretamente por fazer parte do mesmo "contexto" da API de vídeos e tratarem do mesmo assunto (gerenciamento de arquivos)
 
 ## 4. Worker de Notificações
 
 - Repositório: (final-challenge-grupo-118-notification)[https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-notification]
-- Abordagem da API: <TODO - Colocar modelo escolhido>
 
 ![Code Coverage - Worker de Notificações](./final-challenge-grupo-118-notification%20-%20code%20coverage.png)
 
