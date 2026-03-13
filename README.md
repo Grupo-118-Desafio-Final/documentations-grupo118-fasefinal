@@ -30,6 +30,12 @@ Dividimos a aplicação em alguns serviços (entre APIs e Workers) para permitir
 
 Utilizamos mecanismos de Mensageria para garantir que não iremos perder elementos no fluxo de processamento, Incluindo a maneira como realizamos o aviso para o sistema de mensageria, informando sucesso apenas se tudo que é proposto no fluxo foi feito corretamente (ACK e NACK)
 
+## Mensageria
+
+Sobre a Mensageria, utilizamos o [LavinMQ](https://lavinmq.com) através da [CloudAMQP](https://www.cloudamqp.com) (que disponibilizava de modo gratuito a criação dos recursos para uso) para prover a comunicação com nossos consumidores. No momento da configuração das filas, podemos definir qual a fila de dead letter para onde os registros irão caso não enviemos um ACK
+
+![Filas - LavinMQ.PNG](./Filas%20-%20LavinMQ.PNG)
+
 ## 1. API de Usuários e Planos
 
 - Repositório: [final-challenge-grupo-118-users](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-users)
