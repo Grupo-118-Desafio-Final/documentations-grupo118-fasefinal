@@ -136,7 +136,9 @@ OBS: A parte de gerenciamento das tabelas (DDL) utilizamos a estrutura de Code-F
 
 Para a observabilidade, criamos um repositório que irá instalar o Grafana Alloy dentro do cluster e realizar o envio de Métricas, Traces e Logs para uma instância de Grafana Cloud
 
-E para manter o modelo padronizado criamos um Nuget Package, para facilitar a adoção e configuração dos serviços
+E para manter o modelo padronizado criamos um Nuget Package, para facilitar a adoção e configuração dos serviços.
+
+OBS: o nome do repositório contém o Keycloak pois pretendiamos usar essa ferramenta para gerenciar a nossa base de usuário e a parte de autenticação, porém optamos numa fase avançada do projeto pela não utilização da mesma.
 
 ## Estrutura de Deploy
 
