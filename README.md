@@ -62,7 +62,9 @@ Esse microsserviço é responsável por
 
 Utilizamos uma estrutura de MongoDB devido a simplicidade dos dados que precisam ser armazenados
 
-Para interagir com essa API, criamos um frontend no repositório [final-challenge-grupo-118-frontend](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-frontend), permitindo assim uma interação mais fluída no upload dos vídeos
+Para interagir com essa API, criamos um frontend no repositório [final-challenge-grupo-118-frontend](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-frontend), permitindo assim uma interação mais fluída no upload dos vídeos.
+
+OBS: Optamos por não realizar o deploy desse frontend pois não era o foco do projeto, porém em um sistema produtivo, iriamos também utiliza-lo em nuvem.
 
 ## 3. Worker de Corte de Imagens
 
@@ -246,6 +248,18 @@ EM um momento inicial, inserimos alguns dashboards pré-configurados para visual
 ### Observability - Metrics 2
 ![Observability - Métrics 2](./Observability/Observability%20-%20Metrics%202.png)
 
+# Diferenciais
+
+No desenho da nossa solução, optamos por elaborar o conceito de `Plano`, onde podemos controlar e evoluir o sistema em torno dos tipos de plano e seus benefícios.
+
+Nessa versão, englobamos:
+- quantidade de frames
+- qualidade das imagens
+
+Porém a ideia seria evoluir ainda mais de maneira que poderiamos ter 
+- filas de processamento separadas por plano
+- deployment dos consumidores separados, tendo mais recursos computacionais, para gerar os zips mais rapidamente.
+- etc
 
 # Diagramas
 
