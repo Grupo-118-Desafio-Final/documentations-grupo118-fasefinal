@@ -187,11 +187,11 @@ Desse modo, a configuração das variaveis que cada aplicação utiliza ficou de
 
 No momento do deploy, precisamos apenas informar qual a versão do Helm chart e qual a versão da imagem gera
 
-<TODO - Imagem de workflow>
+![Pipeline - CD - Parametros](./CI-CD%20Structure/Pipeline%20-%20CD%20-%20Parametros.PNG)
 
 Feito isso, o processo acontece de forma automática
 
-<TODO - Imagem de pipeline executando>
+![Pipeline - CD](./CI-CD%20Structure/Pipeline%20-%20CD.PNG)
 
 Abaixo documentamos em um modelo de diagrama, todo nosso processo de CI e CD
 
@@ -247,6 +247,26 @@ EM um momento inicial, inserimos alguns dashboards pré-configurados para visual
 
 ### Observability - Metrics 2
 ![Observability - Métrics 2](./Observability/Observability%20-%20Metrics%202.png)
+
+# Escalabilidade
+Sendo uma das necessidades do sistema, uma escalabilidade que nos permita dar conta do volume de requisições paralelas, Todos os nossos deployments são gerenciados através do Helm Chart (mencionado anteriormente) e através deles temos a configuração de HPA, permitindo um autoscale automático baseado nas métricas do momento da aplicação
+
+Como exemplo, no repositório da [API De Usuários](https://github.com/Grupo-118-Desafio-Final/final-challenge-grupo-118-users/blob/main/helm/values-production.yaml) temos no arquivo yaml o trecho de `autoScaling` conforme exemplo abaixo
+
+```yaml
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 70
+```
+
+Dessa maneira todas as aplicações detém mecanismos para serem parametrizadas para garantir o scaling automático.
+
+Além disso, para minimizar tempo entre as requisições e garantir uma menor probabilidade e falhas, no nosso modelo de comunicação
+
+- As APIs se comunicam entre si de maneira interna via `services`, de modo que o trafégo não precise sair para a internet para ser novamente roteado
+- as requisições geradas a partir do API Gateway (consumidas pelo frontend), depois que passam por essa fachada, são roteadas para dentro do cluster via NGINX (proxy reverso interno) para também minimizar os saltos.
 
 # Diferenciais
 
