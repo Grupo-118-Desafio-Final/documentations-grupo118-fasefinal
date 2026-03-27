@@ -23,7 +23,7 @@ Criamos um repositório separado para armazenar diversos detalhes acerca da impl
 
 Para assistir ao vídeo de apresentação do projeto, clique na imagem abaixo:
 
-[![Watch the video](11SOAT%20-%20Fase%20Final%20-%20Grupo%20118.PNG)]()
+[![Watch the video](11SOAT%20-%20Fase%20Final%20-%20Grupo%20118.PNG)](https://youtu.be/Pw3bNZtiIAw)
 
 # Módulos do Sistema
 Dividimos a aplicação em alguns serviços (entre APIs e Workers) para permitir uma maior escalabilidade da solução de acordo com a demanda
